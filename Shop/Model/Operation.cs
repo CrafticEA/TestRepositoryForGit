@@ -18,7 +18,7 @@ namespace Shop.Model
         }
         public int Id { get => id; set => id = value; }
         public DateTime Date { get => date; set => date = value; }
-        internal Client Client { get => client; set => client = value; }
-        internal Product Product { get => product; set => product = value; }
+        internal Client? Client { get => client; set => client = value; }
+        internal Product? Product { get => product; set => product = value; }
     }
 }
