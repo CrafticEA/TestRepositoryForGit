@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="482" Width="802">
     <Grid>
-        <DataGrid x:Name="ClientDGrid" Margin="37,10,347,22">
+        <DataGrid x:Name="ClientDGrid" Margin="37,10,551,124" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="AddClientButton" Content="Добавить клиента" HorizontalAlignment="Left" Margin="37,349,0,0" VerticalAlignment="Top" Height="42" Width="106" Click="AddClientButton_Click"/>
+        <Button x:Name="RemoveClientButton" Content="Удалить клиента" HorizontalAlignment="Left" Margin="148,349,0,0" VerticalAlignment="Top" Height="42" Width="101" Click="RemoveClientButton_Click"/>
+        <DataGrid x:Name="ProductDG" Margin="268,10,267,124" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddProductButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="268,350,0,0" VerticalAlignment="Top" Height="41" Width="113" Click="AddProductButton_Click"/>
+        <Button x:Name="RemoveProductButton" Content="Удалить продукт" HorizontalAlignment="Left" Margin="386,351,0,0" VerticalAlignment="Top" Height="40" Width="149" Click="RemoveProductButton_Click"/>
     </Grid>
 </Window>

@@ -16,7 +16,7 @@ namespace Shop
             this.view = view;
             model = new ShopContext();
             GetClientList();
-            //GetProductList();
+            GetProductList();
         }
 
         public void AddNewClient()
@@ -24,9 +24,9 @@ namespace Shop
             model.AddClient(view.clientToAdd);
         }
 
-        public void RemoveSelectedCLient()
+        public void RemoveSelectedClient()
         {
-            model.RemoveClient(view.clientToRemove);
+            model.RemoveClient(view.selectedClient);
         }
 
         public void GetClientList()
@@ -36,12 +36,12 @@ namespace Shop
 
         public void AddNewProduct()
         {
-            model.AddClient(view.clientToAdd);
+            model.AddProduct(view.productToAdd);
         }
 
         public void RemoveSelectedProduct()
         {
-            model.RemoveProduct(view.productToRemove);
+            model.RemoveProduct(view.selectedProduct);
         }
         public void GetProductList()
         {

@@ -1,20 +1,22 @@
 ﻿using Shop.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop
 {
-    internal interface IView
+    public interface IView
     {
         List<Client> clients { set; }
-        Client clientToAdd { get; }
-        Client clientToRemove { get; }
+        Client clientToAdd { get;}
+        Client selectedClient { get; }
         List<Product> products { set; }
-        Product productToAdd {get; }
-        Product productToRemove { get; }
+        Product productToAdd { get;}
+        Product selectedProduct { get; }
 
     }
 }

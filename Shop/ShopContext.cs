@@ -64,11 +64,13 @@ namespace Shop
         public void AddProduct(Product productToAdd)
         {
             this.Product.Add(productToAdd);
+            this.SaveChanges();
         }
 
         public void RemoveProduct(Product productToRemove)
         {
             this.Product.Remove(productToRemove);
+            this.SaveChanges();
         }
 
         public List<Product> GetProducts()
