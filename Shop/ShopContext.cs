@@ -40,7 +40,7 @@ namespace Shop
         //}
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Craftic\\Shop.mdf;Integrated Security=True;Connect Timeout=30");
+            var conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Craftic\\Documents\\Shop.mdf;Integrated Security=True;Connect Timeout=30");
             options.UseSqlServer(conn);
         }
 
