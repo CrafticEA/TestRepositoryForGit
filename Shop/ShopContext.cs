@@ -24,7 +24,7 @@ namespace Shop
             Database.EnsureCreated();
 
         }
-        //TEst next text
+        //TEst next text one more test
         //public static ShopContext GetShopContext()
         //{
         //    if(_shopContext == null)
