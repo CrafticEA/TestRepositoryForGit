@@ -20,7 +20,7 @@ namespace Shop
 
         public ShopContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
 
         }
@@ -40,7 +40,7 @@ namespace Shop
         //}
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var conn = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Craftic\\Documents\\Shop.mdf;Integrated Security=True;Connect Timeout=30");
+            var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ShopDB;AttachDbFilename=C:\Users\Craftic\GitHub\ShopMVPPattern\Shop\ShopDB.mdf;Integrated Security=True;Connect Timeout=30");
             options.UseSqlServer(conn);
         }
 
