@@ -13,9 +13,9 @@ namespace Shop
     internal class ShopContext : DbContext, IModel
     {
         //private static ShopContext? _shopContext;
-        public DbSet<Client> Client => Set<Client>();
-        public DbSet<Operation> Operation => Set<Operation>();
-        public DbSet<Product> Product => Set<Product>();
+        public DbSet<Client> Client { get; set; }
+        public DbSet<Operation> Operation { get; set; }
+        public DbSet<Product> Product { get; set; }
 
 
         public ShopContext()
