@@ -11,6 +11,7 @@ namespace Shop.Model
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public Client Client { get; set; }
-        public List<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
+        public List<InvoicePosition> InvoicePositions { get; set; }
     }
 }

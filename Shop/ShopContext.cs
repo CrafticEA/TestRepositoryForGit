@@ -13,10 +13,10 @@ namespace Shop
     internal class ShopContext : DbContext, IModel
     {
         //private static ShopContext? _shopContext;
-        public DbSet<Client> Client { get; set; }
-        public DbSet<Operation> Operation { get; set; }
-        public DbSet<Product> Product { get; set; }
-
+        public DbSet<Client> Client => Set<Client>();
+        public DbSet<Operation> Operation => Set<Operation>();
+        public DbSet<Product> Product => Set<Product>();
+        public DbSet<InvoicePosition> InvoicePositions => Set<InvoicePosition>();
 
         public ShopContext()
         {
@@ -24,24 +24,31 @@ namespace Shop
             Database.EnsureCreated();
 
         }
-        //TEst next text one more test
-        //public static ShopContext GetShopContext()
-        //{
-        //    if(_shopContext == null)
-        //    {
-        //        _shopContext = new ShopContext();
-        //    }
-        //    return _shopContext;
-        //}
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Craftic\NShop1.mdf;Integrated Security=True;Connect Timeout=30");
-        //}
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=ShopDB;AttachDbFilename=C:\Users\Craftic\GitHub\ShopMVPPattern\Shop\ShopDB.mdf;Integrated Security=True;Connect Timeout=30");
             options.UseSqlServer(conn);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Operation>()
+                .HasMany(p => p.Products)
+                .WithMany(o => o.Operations)
+                .UsingEntity<InvoicePosition>(
+                    j => j
+                    .HasOne(pt => pt.Product)
+                    .WithMany(p => p.InvoicePositions)
+                    .HasForeignKey(pt => pt.ProductId),
+                    j => j
+                    .HasOne(pt => pt.Operation)
+                    .WithMany(p => p.InvoicePositions)
+                    .HasForeignKey(pt => pt.OperationId),
+                    j =>
+                    {
+                        //j.Property(pt => pt.Count).HasDefaultValue("Count");
+                        j.HasKey(t => new { t.ProductId, t.OperationId });
+                    });
         }
 
         public void AddClient(Model.Client clientToAdd)

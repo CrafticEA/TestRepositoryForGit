@@ -12,6 +12,7 @@ namespace Shop.Model
         public string Name { get; set; }
         public int Price { get; set; }
         public int Count { get; set; }
-        public List<Operation>? Operations { get; set; }
+        public ICollection<Operation>? Operations { get; set; }
+        public List<InvoicePosition> InvoicePositions { get; set; }
     }
 }
