@@ -11,12 +11,12 @@ namespace Shop
 {
     public interface IView
     {
-        List<Client> clients { set; }
-        Client clientToAdd { get;}
+        ICollection<Client> clients { set; }
+        Client clientToAdd { get; }
         Client selectedClient { get; }
-        List<Product> products { set; }
-        Product productToAdd { get;}
+        ICollection<Product> products { set; }
+        Product productToAdd { get; }
         Product selectedProduct { get; }
-
+        ICollection<InvoicePosition> invoices { set; }
     }
 }

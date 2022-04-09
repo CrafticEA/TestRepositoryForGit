@@ -1,0 +1,29 @@
+﻿<Window x:Class="Shop.AddOperation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shop"
+        mc:Ignorable="d"
+        Title="AddOperation" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <DataGrid x:Name="ProductToAddDG" Margin="21,27,0,107" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="268">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="ProductListToBuyDG" AutoGenerateColumns="False" Margin="400,21,68,101">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Product.Name}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+                <Button x:Name="AddProduct" Content="Add" HorizontalAlignment="Left" Margin="328,145,0,0" VerticalAlignment="Top" Height="28" Width="56" Click="AddProduct_Click" />
+            <Button Content="Remove" HorizontalAlignment="Left" Margin="328,185,0,0" VerticalAlignment="Top" Height="28" Width="56"/>
+            <Button x:Name="CreateOperation" Content="Оформить" HorizontalAlignment="Left" Margin="288,369,0,0" VerticalAlignment="Top" Height="45" Width="129" Click="CreateOperation_Click"/>
+        </Grid>
+    </Grid>
+</Window>

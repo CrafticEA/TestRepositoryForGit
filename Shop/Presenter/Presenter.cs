@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    internal class Presenter
+    public class Presenter
     {
         IModel model;
         IView view;
@@ -22,11 +23,13 @@ namespace Shop
         public void AddNewClient()
         {
             model.AddClient(view.clientToAdd);
+            this.GetClientList();
         }
 
         public void RemoveSelectedClient()
         {
             model.RemoveClient(view.selectedClient);
+            this.GetClientList();
         }
 
         public void GetClientList()
@@ -37,15 +40,22 @@ namespace Shop
         public void AddNewProduct()
         {
             model.AddProduct(view.productToAdd);
+            this.GetProductList();
         }
 
         public void RemoveSelectedProduct()
         {
             model.RemoveProduct(view.selectedProduct);
+            this.GetProductList();
         }
         public void GetProductList()
         {
             view.products = model.GetProducts();
+        }
+
+        internal void GetInvoicesList(Operation operation)
+        {
+            view.invoices = model.GetInvoicesList(operation);
         }
     }
 }
