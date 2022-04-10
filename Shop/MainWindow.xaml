@@ -7,22 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="482" Width="802">
     <Grid>
-        <DataGrid x:Name="ClientDGrid" Margin="37,10,551,124" AutoGenerateColumns="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="226*"/>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="303*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="ClientDGrid" Margin="10,10,2,124" AutoGenerateColumns="False" IsReadOnly="True" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="1*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="2*"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Операции" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Operations}" SelectionChanged="ComboBox_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Date}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="AddClientButton" Content="Добавить клиента" HorizontalAlignment="Left" Margin="37,349,0,0" VerticalAlignment="Top" Height="42" Width="106" Click="AddClientButton_Click"/>
-        <Button x:Name="RemoveClientButton" Content="Удалить клиента" HorizontalAlignment="Left" Margin="148,349,0,0" VerticalAlignment="Top" Height="42" Width="101" Click="RemoveClientButton_Click"/>
-        <DataGrid x:Name="ProductDG" Margin="268,10,267,124" AutoGenerateColumns="False">
+        <Button x:Name="AddClientButton" Content="Добавить клиента" HorizontalAlignment="Left" Margin="11,347,0,0" VerticalAlignment="Top" Height="42" Width="106" Click="AddClientButton_Click"/>
+        <Button x:Name="RemoveClientButton" Content="Удалить клиента" HorizontalAlignment="Left" Margin="123,347,0,0" VerticalAlignment="Top" Height="42" Width="101" Click="RemoveClientButton_Click"/>
+        <DataGrid x:Name="ProductDG" Margin="0,10,0,124" AutoGenerateColumns="False" Grid.Column="1" IsReadOnly="True" HorizontalAlignment="Center" Width="267">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="AddProductButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="268,350,0,0" VerticalAlignment="Top" Height="41" Width="113" Click="AddProductButton_Click"/>
-        <Button x:Name="RemoveProductButton" Content="Удалить продукт" HorizontalAlignment="Left" Margin="386,351,0,0" VerticalAlignment="Top" Height="40" Width="149" Click="RemoveProductButton_Click"/>
+        <Button x:Name="AddProductButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="3,347,0,0" VerticalAlignment="Top" Height="41" Width="113" Click="AddProductButton_Click" Grid.Column="1"/>
+        <Button x:Name="RemoveProductButton" Content="Удалить продукт" HorizontalAlignment="Left" Margin="121,347,0,0" VerticalAlignment="Top" Height="41" Width="149" Click="RemoveProductButton_Click" Grid.Column="1"/>
+        <DataGrid x:Name="Operations" Margin="2,10,10,124" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Product.Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="100"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddOperation" Content="Создать накладную" HorizontalAlignment="Left" Margin="60,407,0,0" VerticalAlignment="Top" Height="40" Width="136" Grid.Column="1" Click="AddOperation_Click"/>
     </Grid>
 </Window>

@@ -12,16 +12,15 @@ namespace Shop
 {
     internal class ShopContext : DbContext, IModel
     {
-        //private static ShopContext? _shopContext;
-        public DbSet<Client> Client => Set<Client>();
-        public DbSet<Operation> Operation => Set<Operation>();
-        public DbSet<Product> Product => Set<Product>();
+        public DbSet<Client> Clients => Set<Client>();
+        public DbSet<Operation> Operations => Set<Operation>();
+        public DbSet<Product> Products => Set<Product>();
         public DbSet<InvoicePosition> InvoicePositions => Set<InvoicePosition>();
 
         public ShopContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -46,43 +45,51 @@ namespace Shop
                     .HasForeignKey(pt => pt.OperationId),
                     j =>
                     {
-                        //j.Property(pt => pt.Count).HasDefaultValue("Count");
                         j.HasKey(t => new { t.ProductId, t.OperationId });
                     });
         }
 
         public void AddClient(Model.Client clientToAdd)
         {
-            this.Client.Add(clientToAdd);
+            this.Clients.Add(clientToAdd);
             this.SaveChanges();
         }
 
         public void RemoveClient(Client clientToRemove)
         {
-            this.Client.Remove(clientToRemove);
+            this.Clients.Remove(clientToRemove);
             this.SaveChanges();
         }
 
         public List<Client> GetClients()
         {
-            return (List<Client>)this.Client.ToList();
+            //return (List<Client>)this.Clients.ToList();
+            return this.Clients.Include(c => c.Operations).ToList();
         }
 
         public void AddProduct(Product productToAdd)
         {
-            this.Product.Add(productToAdd);
+            if (Products.Where(p => p.Name == productToAdd.Name).Any())
+            {
+                Product product = Products.First(p => p.Name == productToAdd.Name);
+                product.Count += productToAdd.Count;
+            }
+            else
+            {
+                this.Products.Add(productToAdd);
+            }
             this.SaveChanges();
         }
 
         public void RemoveProduct(Product productToRemove)
         {
-            this.Product.Remove(productToRemove);
+            this.Products.Remove(productToRemove);
             this.SaveChanges();
         }
 
         public List<Product> GetProducts()
         {
-            return (List<Product>)this.Product.ToList();
+            return (List<Product>)this.Products.ToList();
         }
     }
 }

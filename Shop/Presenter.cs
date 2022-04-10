@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    internal class Presenter
+    public class Presenter
     {
         IModel model;
         IView view;
@@ -22,11 +22,13 @@ namespace Shop
         public void AddNewClient()
         {
             model.AddClient(view.clientToAdd);
+            this.GetClientList();
         }
 
         public void RemoveSelectedClient()
         {
             model.RemoveClient(view.selectedClient);
+            this.GetClientList();
         }
 
         public void GetClientList()
@@ -37,11 +39,13 @@ namespace Shop
         public void AddNewProduct()
         {
             model.AddProduct(view.productToAdd);
+            this.GetProductList();
         }
 
         public void RemoveSelectedProduct()
         {
             model.RemoveProduct(view.selectedProduct);
+            this.GetProductList();
         }
         public void GetProductList()
         {

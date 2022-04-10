@@ -51,27 +51,34 @@ namespace Shop
         {
             clientToAdd = new Client { FirstName = names[random.Next(0, names.Length - 1)], LastName = lastNames[random.Next(0, lastNames.Length - 1)] };
             presenter.AddNewClient();
-            presenter.GetClientList();
         }
 
         private void RemoveClientButton_Click(object sender, RoutedEventArgs e)
         {
             selectedClient = (Client)ClientDGrid.SelectedItem;
             presenter.RemoveSelectedClient();
-            presenter.GetClientList();
         }
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             productToAdd = new Product { Name = productNames[random.Next(0, productNames.Length - 1)], Price = random.Next(1, 10) * 10, Count = random.Next(5, 10) };
             presenter.AddNewProduct();
-            presenter.GetProductList();
         }
         private void RemoveProductButton_Click(object sender, RoutedEventArgs e)
         {
             selectedProduct = (Product)ProductDG.SelectedItem;
             presenter.RemoveSelectedProduct();
-            presenter.GetProductList();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddOperation_Click(object sender, RoutedEventArgs e)
+        {
+            Window d = new AddOperation(this);
+            d.ShowDialog();
         }
     }
 }
