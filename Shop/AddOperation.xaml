@@ -23,7 +23,7 @@
             </DataGrid>
                 <Button x:Name="AddProduct" Content="Add" HorizontalAlignment="Left" Margin="328,145,0,0" VerticalAlignment="Top" Height="28" Width="56" Click="AddProduct_Click" />
             <Button Content="Remove" HorizontalAlignment="Left" Margin="328,185,0,0" VerticalAlignment="Top" Height="28" Width="56"/>
-            <Button Content="Оформить" HorizontalAlignment="Left" Margin="288,369,0,0" VerticalAlignment="Top" Height="45" Width="129"/>
+            <Button x:Name="CreateOperation" Content="Оформить" HorizontalAlignment="Left" Margin="288,369,0,0" VerticalAlignment="Top" Height="45" Width="129" Click="CreateOperation_Click"/>
         </Grid>
     </Grid>
 </Window>

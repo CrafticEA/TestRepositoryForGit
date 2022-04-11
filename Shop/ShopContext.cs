@@ -91,5 +91,19 @@ namespace Shop
         {
             return (List<Product>)this.Products.ToList();
         }
+
+        public void CreateOperation(Operation operation)
+        {
+            Operations.Add(operation);
+            this.SaveChanges();
+        }
+
+        public ICollection<InvoicePosition> GetInvoicesList(Operation operation)
+        {
+            IQueryable<InvoicePosition> invoicePositions = from c in this.InvoicePositions
+                                                           where c.OperationId == operation.Id
+                                                           select c;
+            return invoicePositions.ToList();
+        }
     }
 }

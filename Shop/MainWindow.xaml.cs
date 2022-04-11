@@ -35,17 +35,18 @@ namespace Shop
             presenter = new Presenter(this);
         }
 
-        public List<Client> clients { set => this.ClientDGrid.ItemsSource = value; }
+        public ICollection<Client> clients { set => this.ClientDGrid.ItemsSource = value; }
 
         public Client clientToAdd { get; set; }
 
         public Client selectedClient { get; set; }
 
-        public List<Product> products { set => this.ProductDG.ItemsSource = value; }
+        public ICollection<Product> products { set => this.ProductDG.ItemsSource = value; }
 
         public Product productToAdd { get; set; }
 
         public Product selectedProduct { get; set; }
+        public ICollection<InvoicePosition> invoices { set => this.Invoices.ItemsSource = value; }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)
         {
@@ -79,6 +80,13 @@ namespace Shop
         {
             Window d = new AddOperation(this);
             d.ShowDialog();
+        }
+
+        private void OperationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var cb = (ComboBox)sender;
+            var o = (Operation)cb.SelectedItem;
+            presenter.GetInvoicesList(o);
         }
     }
 }

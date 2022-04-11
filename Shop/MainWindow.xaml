@@ -19,7 +19,7 @@
                 <DataGridTemplateColumn Header="Операции" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Operations}" SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBox x:Name="OperationComboBox" ItemsSource="{Binding Operations}" SelectionChanged="OperationComboBox_SelectionChanged">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Date}"/>
@@ -42,7 +42,7 @@
         </DataGrid>
         <Button x:Name="AddProductButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="3,347,0,0" VerticalAlignment="Top" Height="41" Width="113" Click="AddProductButton_Click" Grid.Column="1"/>
         <Button x:Name="RemoveProductButton" Content="Удалить продукт" HorizontalAlignment="Left" Margin="121,347,0,0" VerticalAlignment="Top" Height="41" Width="149" Click="RemoveProductButton_Click" Grid.Column="1"/>
-        <DataGrid x:Name="Operations" Margin="2,10,10,124" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2">
+        <DataGrid x:Name="Invoices" Margin="2,10,10,124" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Product.Name}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Кол-во" Binding="{Binding Count}" Width="100"></DataGridTextColumn>

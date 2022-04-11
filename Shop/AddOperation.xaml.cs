@@ -19,23 +19,37 @@ namespace Shop
     /// <summary>
     /// Логика взаимодействия для AddOperation.xaml
     /// </summary>
-    public partial class AddOperation : Window
+    public partial class AddOperation : Window, IAddOperationView
     {
-        Operation operation;
-        ObservableCollection<InvoicePosition> invoices;
+        public Operation operation { get; set; }
+        public ICollection<Product> products { set => ProductToAddDG.ItemsSource = value; }
+        public ObservableCollection<InvoicePosition> invoicePositions { get; set; }
+
+        AddOperationPresenter presenter;
+
         public AddOperation(MainWindow window)
         {
             InitializeComponent();
-            operation = new Operation() { Client = (Client)window.ClientDGrid.SelectedItem};
-            ProductToAddDG.ItemsSource = window.ProductDG.ItemsSource;
-            invoices = new ObservableCollection<InvoicePosition>();
-            ProductListToBuyDG.ItemsSource = invoices;
+            presenter = new AddOperationPresenter(this);
+            invoicePositions = new ObservableCollection<InvoicePosition>();
+            ProductListToBuyDG.ItemsSource = invoicePositions;
+            var a = (Client)window.ClientDGrid.SelectedItem;
+            operation = new Operation() { InvoicePositions = invoicePositions, ClientId = a.Id };
         }
+
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            var a = (Product)ProductToAddDG.SelectedItem;
-            invoices.Add(new InvoicePosition() { Count = 1, ProductId=a.Id, Product = a, Operation = this.operation });
+            var p = (Product)ProductToAddDG.SelectedItem;
+            var inv = new InvoicePosition() { Count = 10, Operation = operation, Product = p };
+            presenter.AddInvoicePosition(inv);
+        }
+
+        private void CreateOperation_Click(object sender, RoutedEventArgs e)
+        {
+            operation.Date = DateTime.Now;
+            presenter.CreateOperation(operation);
+            this.Close();
         }
     }
 }

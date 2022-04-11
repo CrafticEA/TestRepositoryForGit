@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Shop
         void AddProduct(Model.Product productToAdd);
         void RemoveProduct(Model.Product productToRemove);
         List<Model.Product> GetProducts();
-        
+        void CreateOperation(Operation operation);
+        ICollection<InvoicePosition> GetInvoicesList(Operation operation);
     }
 }

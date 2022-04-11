@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,11 @@ namespace Shop
         public void GetProductList()
         {
             view.products = model.GetProducts();
+        }
+
+        internal void GetInvoicesList(Operation operation)
+        {
+            view.invoices = model.GetInvoicesList(operation);
         }
     }
 }
